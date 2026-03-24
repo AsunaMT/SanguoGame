@@ -1,0 +1,95 @@
+/* ═══════════════════════════════════════════
+   三国朝堂 — 动画
+   ═══════════════════════════════════════════ */
+
+/* 卷轴展开动画（周报弹窗） */
+@keyframes scroll-unfurl {
+  from { transform: scaleY(0.1); opacity: 0; }
+  to   { transform: scaleY(1);   opacity: 1; }
+}
+
+#modal-report .modal-scroll {
+  animation: scroll-unfurl 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: top center;
+}
+
+/* 消息淡入 */
+@keyframes msg-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.msg-bubble {
+  animation: msg-in 0.25s ease;
+}
+
+/* 禀奏阶段：逐字打字效果（配合JS） */
+@keyframes blink-cursor {
+  0%, 100% { border-right-color: transparent; }
+  50%       { border-right-color: var(--gold-shine); }
+}
+
+.typing-cursor {
+  display: inline-block;
+  border-right: 2px solid var(--gold-shine);
+  animation: blink-cursor 0.8s steps(1) infinite;
+}
+
+/* 大臣状态脉冲 */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0px rgba(201,162,39,0); }
+  50%       { box-shadow: 0 0 10px rgba(201,162,39,0.5); }
+}
+
+.minister-entry.speaking {
+  animation: pulse-glow 1.2s ease-in-out infinite;
+}
+
+/* 标题金光 */
+@keyframes golden-shimmer {
+  0%   { text-shadow: 0 0 16px rgba(232,196,77,0.4); }
+  50%  { text-shadow: 0 0 32px rgba(232,196,77,0.8), 0 0 60px rgba(232,196,77,0.2); }
+  100% { text-shadow: 0 0 16px rgba(232,196,77,0.4); }
+}
+
+.game-title {
+  animation: golden-shimmer 3s ease-in-out infinite;
+}
+
+/* 阶段切换淡入 */
+@keyframes phase-fade {
+  from { opacity: 0.3; }
+  to   { opacity: 1; }
+}
+
+#phase-display {
+  animation: phase-fade 0.5s ease;
+}
+
+/* Buff 卡片选中涟漪 */
+@keyframes ripple {
+  from { transform: scale(1); box-shadow: 0 0 0 0 rgba(178,34,34,0.4); }
+  to   { transform: scale(1.02); box-shadow: 0 0 0 8px rgba(178,34,34,0); }
+}
+
+.buff-card.selected {
+  animation: ripple 0.3s ease;
+}
+
+/* 周报资源变化数字飘入 */
+@keyframes float-up {
+  from { transform: translateY(0); opacity: 1; }
+  to   { transform: translateY(-30px); opacity: 0; }
+}
+
+.delta-float {
+  position: fixed;
+  font-size: 1rem;
+  font-weight: bold;
+  pointer-events: none;
+  animation: float-up 1.2s ease forwards;
+  z-index: 300;
+}
+
+.delta-float.positive { color: #66cc66; }
+.delta-float.negative { color: #cc6666; }
