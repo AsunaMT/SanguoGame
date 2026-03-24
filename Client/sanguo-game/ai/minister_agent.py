@@ -1,17 +1,15 @@
-"""AI大臣对话代理（Gemini 版）"""
+"""AI大臣对话代理（Venus OpenAPI 版）"""
 from __future__ import annotations
 import asyncio
-import re
+import json
+import os
+import requests
 from pathlib import Path
 from typing import List, Dict
-import google.generativeai as genai
-from google.api_core.exceptions import ResourceExhausted
 
 from game.state import Minister, GameState
 from game.ministers import ROLE_NAMES
-from config import GEMINI_API_KEY, MINISTER_MODEL, MAX_HISTORY_ROUNDS
-
-genai.configure(api_key=GEMINI_API_KEY)
+from config import VENUS_TOKEN, VENUS_URL, MINISTER_MODEL, MAX_HISTORY_ROUNDS
 
 _PROMPT_DIR = Path(__file__).parent / "prompts"
 
@@ -20,26 +18,29 @@ def _load_template(filename: str) -> str:
     return (_PROMPT_DIR / filename).read_text(encoding="utf-8")
 
 
-def _extract_retry_delay(exc: ResourceExhausted) -> float:
-    """从异常消息里提取 retry_delay 秒数，默认30秒"""
-    m = re.search(r"retry_delay\s*\{\s*seconds:\s*(\d+)", str(exc))
-    return float(m.group(1)) + 2 if m else 30.0
+def _call_venus(messages: List[Dict], model: str) -> str:
+    """同步调用 Venus OpenAPI，返回回复文本"""
+    payload = {
+        "model": model,
+        "messages": messages,
+    }
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {VENUS_TOKEN}",
+    }
+    response = requests.post(VENUS_URL, headers=headers, data=json.dumps(payload), timeout=60)
+    if response.status_code != 200:
+        raise RuntimeError(f"Venus API 请求失败 [{response.status_code}]: {response.text}")
+    return response.json()["choices"][0]["message"]["content"]
 
 
-async def _call_with_retry(coro_fn, max_retries: int = 2):
-    """遇到限流自动等待重试"""
-    for attempt in range(max_retries + 1):
-        try:
-            return await coro_fn()
-        except ResourceExhausted as e:
-            if attempt == max_retries:
-                raise
-            wait = _extract_retry_delay(e)
-            await asyncio.sleep(wait)
+async def _call_venus_async(messages: List[Dict], model: str) -> str:
+    """将同步 Venus 调用包装为异步"""
+    return await asyncio.to_thread(_call_venus, messages, model)
 
 
 class MinisterAgent:
-    """封装单个大臣的 Gemini API 对话"""
+    """封装单个大臣的 Venus OpenAPI 对话"""
 
     def __init__(self, minister: Minister, game_state: GameState):
         self.minister = minister
@@ -49,19 +50,9 @@ class MinisterAgent:
 
     async def respond(self, user_message: str, phase: str, decree: str = "") -> str:
         system = self._build_system_prompt(phase, decree)
-        history = self._build_gemini_history()
+        messages = self._build_messages(system, user_message)
 
-        model = genai.GenerativeModel(
-            model_name=MINISTER_MODEL,
-            system_instruction=system,
-        )
-        chat = model.start_chat(history=history)
-
-        async def _call():
-            return await chat.send_message_async(user_message)
-
-        response = await _call_with_retry(_call)
-        reply = response.text
+        reply = await _call_venus_async(messages, MINISTER_MODEL)
         self._append_history(user_message, reply)
         return reply
 
@@ -86,13 +77,14 @@ class MinisterAgent:
             )
             self.minister.history_summary = old_text[:500] + "…（摘要）"
 
-    def _build_gemini_history(self) -> List[Dict]:
-        """转换为 Gemini 的 history 格式"""
-        history = []
+    def _build_messages(self, system: str, user_message: str) -> List[Dict]:
+        """构建 OpenAI 兼容的 messages 列表"""
+        messages = [{"role": "system", "content": system}]
         for h in self.minister.conversation_history[-MAX_HISTORY_ROUNDS:]:
-            history.append({"role": "user",  "parts": [h["user"]]})
-            history.append({"role": "model", "parts": [h["assistant"]]})
-        return history
+            messages.append({"role": "user",    "content": h["user"]})
+            messages.append({"role": "assistant", "content": h["assistant"]})
+        messages.append({"role": "user", "content": user_message})
+        return messages
 
     # ── System Prompt 构建 ────────────────────────────────────
     def _build_system_prompt(self, phase: str, decree: str = "") -> str:

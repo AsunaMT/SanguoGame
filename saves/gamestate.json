@@ -1,0 +1,287 @@
+{
+  "turn": 1,
+  "date": "公元208年秋",
+  "ruler_name": "shiroyan",
+  "buffs": [
+    "shang_dao",
+    "qian_liang"
+  ],
+  "resources": {
+    "gold": 1500,
+    "food": 7500,
+    "troops": 10000,
+    "population": 50000,
+    "prestige": 30
+  },
+  "territories": [
+    {
+      "id": "player_start",
+      "name": "零陵",
+      "owner": "player",
+      "troops": 3000,
+      "population": 20000,
+      "tax_rate": 0.1
+    },
+    {
+      "id": "xu_du",
+      "name": "许都",
+      "owner": "cao_cao",
+      "troops": 80000,
+      "population": 300000,
+      "tax_rate": 0.15
+    },
+    {
+      "id": "jingzhou_bei",
+      "name": "南阳",
+      "owner": "cao_cao",
+      "troops": 30000,
+      "population": 80000,
+      "tax_rate": 0.12
+    },
+    {
+      "id": "wan_cheng",
+      "name": "宛城",
+      "owner": "cao_cao",
+      "troops": 15000,
+      "population": 50000,
+      "tax_rate": 0.12
+    },
+    {
+      "id": "ye_cheng",
+      "name": "邺城",
+      "owner": "cao_cao",
+      "troops": 40000,
+      "population": 120000,
+      "tax_rate": 0.13
+    },
+    {
+      "id": "xinye",
+      "name": "新野",
+      "owner": "liu_bei",
+      "troops": 8000,
+      "population": 30000,
+      "tax_rate": 0.08
+    },
+    {
+      "id": "fangling",
+      "name": "樊城",
+      "owner": "liu_bei",
+      "troops": 5000,
+      "population": 20000,
+      "tax_rate": 0.08
+    },
+    {
+      "id": "jiankang",
+      "name": "建业",
+      "owner": "sun_quan",
+      "troops": 50000,
+      "population": 150000,
+      "tax_rate": 0.12
+    },
+    {
+      "id": "柴桑",
+      "name": "柴桑",
+      "owner": "sun_quan",
+      "troops": 20000,
+      "population": 60000,
+      "tax_rate": 0.1
+    },
+    {
+      "id": "jiujiang",
+      "name": "寻阳",
+      "owner": "sun_quan",
+      "troops": 10000,
+      "population": 40000,
+      "tax_rate": 0.1
+    },
+    {
+      "id": "xiangyang",
+      "name": "襄阳",
+      "owner": "liu_biao",
+      "troops": 20000,
+      "population": 80000,
+      "tax_rate": 0.1
+    },
+    {
+      "id": "jiangling",
+      "name": "江陵",
+      "owner": "liu_biao",
+      "troops": 12000,
+      "population": 50000,
+      "tax_rate": 0.1
+    },
+    {
+      "id": "changsha",
+      "name": "长沙",
+      "owner": "neutral",
+      "troops": 5000,
+      "population": 30000,
+      "tax_rate": 0.08
+    },
+    {
+      "id": "guiyang",
+      "name": "桂阳",
+      "owner": "neutral",
+      "troops": 3000,
+      "population": 20000,
+      "tax_rate": 0.08
+    },
+    {
+      "id": "wuling",
+      "name": "武陵",
+      "owner": "neutral",
+      "troops": 2000,
+      "population": 15000,
+      "tax_rate": 0.07
+    }
+  ],
+  "diplomacy": {
+    "cao_cao": {
+      "target": "cao_cao",
+      "relation": -20,
+      "alliance": false,
+      "last_event": "曹操南下，天下震动"
+    },
+    "liu_bei": {
+      "target": "liu_bei",
+      "relation": 10,
+      "alliance": false,
+      "last_event": "刘备驻扎新野，招揽人才"
+    },
+    "sun_quan": {
+      "target": "sun_quan",
+      "relation": 0,
+      "alliance": false,
+      "last_event": "孙权据守江东"
+    },
+    "liu_biao": {
+      "target": "liu_biao",
+      "relation": 20,
+      "alliance": false,
+      "last_event": "刘表荆州，与我相邻"
+    }
+  },
+  "ministers": {
+    "internal": {
+      "id": "chen_bowen",
+      "name": "陈伯文",
+      "courtesy_name": "仲达",
+      "role": "internal",
+      "personality": {
+        "traits": [
+          "老成持重",
+          "精于算计",
+          "沉默寡言"
+        ],
+        "speech_style": "言简意赅，多用数字佐证，偶引古语，语气平稳不失威重",
+        "values": [
+          "稳健",
+          "民生",
+          "仓廪充实"
+        ],
+        "dislikes": [
+          "冒进",
+          "穷兵黩武",
+          "空谈"
+        ]
+      },
+      "background": "曾任县令二十年，治绩卓著，户籍清明，粮税从无亏空。不善辞令，但处事稳妥，深得百姓信赖。",
+      "special_ability": "精打细算：每周税收+10%，治下叛乱概率-30%",
+      "ability_effect": {
+        "tax_bonus": 0.1,
+        "rebellion_reduce": 0.3
+      },
+      "loyalty": 80,
+      "conversation_history": [
+        {
+          "user": "（陈伯文走上前来，开始禀报）",
+          "assistant": "主公，秋收初定，零陵户籍清，粮税无亏。今仓有粮七千五百，金一千五百，兵一万。然曹孟德势大，民心未稳。\n臣请：一，增修水利，保秋粮丰产；二，遣使南联刘表，以固唇齿。望主公速决。"
+        },
+        {
+          "user": "现在国内是什么情况，我们什么时候能够称霸天下",
+          "assistant": "主公，今零陵粮足兵强，民心归附，然曹贼拥百万众，势大难图。\n霸业非一日之功。依臣测算，需三年休养生息，扩兵至三万，粮积三万石，方可北顾。\n欲速则不达，愿主公沉心静气，厚积薄发。"
+        }
+      ],
+      "history_summary": ""
+    },
+    "military": {
+      "id": "zhao_tianlie",
+      "name": "赵天烈",
+      "courtesy_name": "奉先",
+      "role": "military",
+      "personality": {
+        "traits": [
+          "刚烈勇猛",
+          "令行禁止",
+          "嫉恶如仇"
+        ],
+        "speech_style": "语气铿锵，直言无忌，善用军旅比喻，有时过于直白",
+        "values": [
+          "忠勇",
+          "铁律",
+          "开疆拓土"
+        ],
+        "dislikes": [
+          "怯懦",
+          "优柔寡断",
+          "偷安享乐"
+        ]
+      },
+      "background": "西凉旧将，身经百战，曾率五百骑击溃敌方万人。治军严明，麾下无有不从。",
+      "special_ability": "铁血雄师：军队战斗力+20%，但粮草消耗+15%",
+      "ability_effect": {
+        "combat_bonus": 0.2,
+        "food_consume_extra": 0.15
+      },
+      "loyalty": 80,
+      "conversation_history": [
+        {
+          "user": "（赵天烈走上前来，开始禀报）",
+          "assistant": "主公！零陵驻军三千，操练已毕，弓马娴熟。然粮草虽足，城防尚需加固。曹孟德暗通款曲，恐生变故。臣请：一、速修城垒，严防曹贼；二、遣细作探其虚实，先发制人。愿为先锋，破敌于阵前！"
+        }
+      ],
+      "history_summary": ""
+    },
+    "diplomacy": {
+      "id": "su_wenjing",
+      "name": "苏文镜",
+      "courtesy_name": "长卿",
+      "role": "diplomacy",
+      "personality": {
+        "traits": [
+          "机智圆滑",
+          "能言善辩",
+          "洞察人心"
+        ],
+        "speech_style": "口若悬河，善用典故，语中常藏深意，笑里不失算计",
+        "values": [
+          "实用",
+          "利益为先",
+          "灵活变通"
+        ],
+        "dislikes": [
+          "迂腐固执",
+          "因小失大"
+        ]
+      },
+      "background": "游学天下十余载，遍识诸侯幕僚，曾凭三寸不烂之舌使两国罢兵。善于纵横捭阖。",
+      "special_ability": "纵横之术：结盟成功率+30%，可刺探敌方情报",
+      "ability_effect": {
+        "alliance_chance": 0.3,
+        "can_spy": true
+      },
+      "loyalty": 80,
+      "conversation_history": [
+        {
+          "user": "（苏文镜走上前来，开始禀报）",
+          "assistant": "主公，秋气肃杀，外势未稳。曹操忌心深重，关系仅负二十，恐有北顾之患；刘表虽厚，然刘玄德亦结善缘，此二势可资利用。臣建议：一、遣使荆州，固结刘表，缓曹军西进；二、暗通孙氏，以联吴抗曹为计，共图江东。愿主公定夺。"
+        }
+      ],
+      "history_summary": ""
+    }
+  },
+  "court_phase": "nizhi",
+  "history_log": [],
+  "week_orders": [],
+  "week_reports": {}
+}

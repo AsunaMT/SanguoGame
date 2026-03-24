@@ -1,35 +1,37 @@
-"""旁白 / 世界动态 AI 生成 & 命令解析（Gemini 版）"""
+"""旁白 / 世界动态 AI 生成 & 命令解析（Venus OpenAPI 版）"""
 from __future__ import annotations
 import asyncio
 import json
-import re
+import requests
 from pathlib import Path
 from typing import List, Dict
-import google.generativeai as genai
-from google.api_core.exceptions import ResourceExhausted
 
 from game.state import GameState
-from config import GEMINI_API_KEY, NARRATOR_MODEL, PARSER_MODEL
-
-genai.configure(api_key=GEMINI_API_KEY)
+from config import VENUS_TOKEN, VENUS_URL, NARRATOR_MODEL, PARSER_MODEL
 
 _PROMPT_DIR = Path(__file__).parent / "prompts"
 _narrator_template = (_PROMPT_DIR / "narrator.txt").read_text(encoding="utf-8")
 
 
-def _extract_retry_delay(exc: ResourceExhausted) -> float:
-    m = re.search(r"retry_delay\s*\{\s*seconds:\s*(\d+)", str(exc))
-    return float(m.group(1)) + 2 if m else 30.0
+def _call_venus(messages: List[Dict], model: str) -> str:
+    """同步调用 Venus OpenAPI，返回回复文本"""
+    payload = {
+        "model": model,
+        "messages": messages,
+    }
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {VENUS_TOKEN}",
+    }
+    response = requests.post(VENUS_URL, headers=headers, data=json.dumps(payload), timeout=60)
+    if response.status_code != 200:
+        raise RuntimeError(f"Venus API 请求失败 [{response.status_code}]: {response.text}")
+    return response.json()["choices"][0]["message"]["content"]
 
 
-async def _call_with_retry(coro_fn, max_retries: int = 2):
-    for attempt in range(max_retries + 1):
-        try:
-            return await coro_fn()
-        except ResourceExhausted as e:
-            if attempt == max_retries:
-                raise
-            await asyncio.sleep(_extract_retry_delay(e))
+async def _call_venus_async(messages: List[Dict], model: str) -> str:
+    """将同步 Venus 调用包装为异步"""
+    return await asyncio.to_thread(_call_venus, messages, model)
 
 
 # ── 旁白生成 ─────────────────────────────────────────────────
@@ -40,9 +42,8 @@ async def narrate_week(state: GameState, raw_events: str) -> str:
         troops=r.troops, gold=r.gold, food=r.food, prestige=r.prestige,
         raw_events=raw_events,
     )
-    model = genai.GenerativeModel(model_name=NARRATOR_MODEL)
-    resp = await _call_with_retry(lambda: model.generate_content_async(prompt))
-    return resp.text
+    messages = [{"role": "user", "content": prompt}]
+    return await _call_venus_async(messages, NARRATOR_MODEL)
 
 
 # ── 命令解析 ─────────────────────────────────────────────────
@@ -66,9 +67,12 @@ _PARSE_SYSTEM = """你是三国策略游戏的命令解析器。
 
 
 async def parse_orders(decree_text: str) -> List[Dict]:
-    model = genai.GenerativeModel(model_name=PARSER_MODEL, system_instruction=_PARSE_SYSTEM)
-    resp = await _call_with_retry(lambda: model.generate_content_async(decree_text))
-    raw = resp.text.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+    messages = [
+        {"role": "system", "content": _PARSE_SYSTEM},
+        {"role": "user",   "content": decree_text},
+    ]
+    raw = await _call_venus_async(messages, PARSER_MODEL)
+    raw = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
     try:
         return json.loads(raw)
     except json.JSONDecodeError:
