@@ -1,0 +1,108 @@
+2026-03-24 14:04:58,536 - watchfiles.main - INFO - 5 changes detected
+2026-03-24 14:10:00,686 - watchfiles.main - INFO - 1 change detected
+2026-03-24 14:17:58,458 - watchfiles.main - INFO - 5 changes detected
+2026-03-24 14:44:28,551 - watchfiles.main - INFO - 1 change detected
+2026-03-24 14:44:31,022 - watchfiles.main - INFO - 1 change detected
+2026-03-24 14:44:31,024 - watchfiles.main - INFO - 1 change detected
+2026-03-24 14:44:31,381 - watchfiles.main - INFO - 1 change detected
+2026-03-24 14:48:53,390 - watchfiles.main - INFO - 1 change detected
+2026-03-24 14:48:54,005 - watchfiles.main - INFO - 1 change detected
+2026-03-24 14:48:54,005 - watchfiles.main - INFO - 1 change detected
+2026-03-24 14:50:00,142 - watchfiles.main - INFO - 1 change detected
+2026-03-24 14:50:00,162 - watchfiles.main - INFO - 1 change detected
+2026-03-24 14:50:14,904 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 14:50:24,849 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 14:50:35,607 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 14:50:35,660 - watchfiles.main - INFO - 2 changes detected
+2026-03-24 14:50:35,673 - watchfiles.main - INFO - 2 changes detected
+2026-03-24 14:53:22,828 - watchfiles.main - INFO - 1 change detected
+2026-03-24 14:53:22,828 - watchfiles.main - INFO - 1 change detected
+2026-03-24 14:54:14,220 - watchfiles.main - INFO - 1 change detected
+2026-03-24 14:54:14,235 - watchfiles.main - INFO - 1 change detected
+2026-03-24 14:54:14,576 - watchfiles.main - INFO - 1 change detected
+2026-03-24 14:54:14,597 - watchfiles.main - INFO - 1 change detected
+2026-03-24 14:54:43,792 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 14:54:54,466 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 14:55:03,457 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 14:58:10,098 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 14:58:18,742 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 14:59:22,398 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 14:59:30,220 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 14:59:38,322 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 15:26:05,580 - watchfiles.main - INFO - 5 changes detected
+2026-03-24 15:32:31,531 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:32:31,987 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:33:18,418 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:36:52,288 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:36:53,658 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:38:34,778 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:39:03,054 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:39:07,901 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:39:07,904 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:39:08,263 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:39:30,886 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:39:30,887 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:42:18,970 - watchfiles.main - INFO - 45 changes detected
+2026-03-24 15:42:35,710 - watchfiles.main - INFO - 46 changes detected
+2026-03-24 15:42:37,991 - watchfiles.main - INFO - 4 changes detected
+2026-03-24 15:42:37,991 - watchfiles.main - INFO - 4 changes detected
+2026-03-24 15:42:38,444 - watchfiles.main - INFO - 17 changes detected
+2026-03-24 15:42:38,474 - watchfiles.main - INFO - 17 changes detected
+2026-03-24 15:42:38,805 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:42:38,834 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:42:41,878 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:42:41,885 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:42:41,913 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:42:42,239 - watchfiles.main - INFO - 5 changes detected
+2026-03-24 15:42:42,240 - watchfiles.main - INFO - 5 changes detected
+2026-03-24 15:42:42,274 - watchfiles.main - INFO - 5 changes detected
+2026-03-24 15:43:19,619 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:43:19,635 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:43:19,698 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:43:24,657 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:43:24,661 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:43:24,673 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:43:40,834 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:43:40,910 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:43:47,699 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:43:47,722 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:45:18,396 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:45:18,415 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:46:06,014 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:46:06,014 - watchfiles.main - INFO - 1 change detected
+2026-03-24 15:46:24,437 - watchfiles.main - INFO - 1 change detected
+2026-03-24 17:52:33,286 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 17:54:29,686 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 17:54:37,582 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 17:55:16,280 - api.routes_court - INFO - 开始调用AI模型: internal, 消息: 你好...
+2026-03-24 17:55:28,278 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 17:55:28,280 - api.routes_court - INFO - AI响应成功，长度: 83
+2026-03-24 17:55:49,691 - api.routes_court - INFO - 开始调用AI模型: internal, 消息: 猛攻曹操 诸君意下如何？...
+2026-03-24 17:55:52,619 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 17:55:52,621 - api.routes_court - INFO - AI响应成功，长度: 101
+2026-03-24 17:56:05,702 - api.routes_court - INFO - 开始调用AI模型: military, 消息: 猛攻曹操如何？...
+2026-03-24 17:56:08,064 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 17:56:08,066 - api.routes_court - INFO - AI响应成功，长度: 116
+2026-03-24 17:56:34,150 - api.routes_court - INFO - 开始调用AI模型: military, 消息: 我意已决 猛攻那曹贼...
+2026-03-24 17:56:36,955 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 17:56:36,956 - api.routes_court - INFO - AI响应成功，长度: 107
+2026-03-24 17:56:50,903 - api.routes_court - INFO - 开始调用AI模型: military, 消息: 我们现在有多少兵力？...
+2026-03-24 17:56:54,347 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 17:56:54,350 - api.routes_court - INFO - AI响应成功，长度: 108
+2026-03-24 17:57:09,451 - api.routes_court - INFO - 开始调用AI模型: military, 消息: 那曹贼有多少兵力...
+2026-03-24 17:57:14,084 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 17:57:14,085 - api.routes_court - INFO - AI响应成功，长度: 123
+2026-03-24 17:57:38,243 - api.routes_court - INFO - 开始调用AI模型: military, 消息: 以一当二十 韩公可以做到吗？...
+2026-03-24 17:57:41,976 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 17:57:41,977 - api.routes_court - INFO - AI响应成功，长度: 119
+2026-03-24 17:57:49,650 - api.routes_court - INFO - 开始调用AI模型: military, 消息: 废物 要你何用...
+2026-03-24 17:57:59,663 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 17:57:59,664 - api.routes_court - INFO - AI响应成功，长度: 116
+2026-03-24 17:59:09,533 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 17:59:18,676 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 17:59:40,076 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 18:00:01,425 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 18:00:12,652 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 18:00:52,630 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 18:01:00,745 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 18:01:09,191 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"

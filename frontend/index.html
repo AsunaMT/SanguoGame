@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>三国争霸 · 极速版 v2.0</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="/static/css/animations.css" />
+</head>
+<body>
+
+<!-- ╔════════════════════════════════════════════════════════╗
+     ║  Screen 1: 主菜单                                      ║
+     ╚════════════════════════════════════════════════════════╝ -->
+<div id="screen-main-menu" class="screen">
+  <div class="main-menu-bg">
+    <h1 class="game-title">三国争霸</h1>
+    <p class="game-subtitle">极速版 · 20轮统一天下 · AI大臣的狼人杀</p>
+
+    <!-- 菜单按钮组 -->
+    <div class="menu-buttons">
+      <button id="btn-continue-game" class="btn-menu btn-primary-large" disabled>继续游戏</button>
+      <button id="btn-new-game"      class="btn-menu btn-secondary-large">新游戏</button>
+      <button id="btn-load-save"     class="btn-menu btn-secondary-large">读取存档</button>
+      <button id="btn-settings"      class="btn-menu btn-secondary-large">设置</button>
+    </div>
+
+    <!-- 弹窗: 存档列表 -->
+    <div id="save-list-modal" class="modal hidden">
+      <div class="modal-scroll">
+        <div class="modal-header">
+          <h2>选择存档</h2>
+          <button id="btn-close-save-list" class="btn-close">✕</button>
+        </div>
+        <div id="save-list-content" class="save-list-content"></div>
+      </div>
+    </div>
+
+    <!-- 弹窗: 设置 -->
+    <div id="settings-modal" class="modal hidden">
+      <div class="modal-scroll">
+        <div class="modal-header">
+          <h2>游戏设置</h2>
+          <button id="btn-close-settings" class="btn-close">✕</button>
+        </div>
+        <div class="settings-content">
+          <div class="setting-item">
+            <label>文字速度</label>
+            <input id="setting-text-speed" type="range" min="1" max="5" value="1" />
+            <span id="text-speed-value">1</span>
+          </div>
+          <div class="setting-item">
+            <label>自动保存</label>
+            <input id="setting-auto-save" type="checkbox" checked />
+          </div>
+          <div class="setting-item">
+            <label>音效</label>
+            <input id="setting-sound" type="checkbox" checked />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="btn-save-settings" class="btn-primary">保存设置</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ╔════════════════════════════════════════════════════════╗
+     ║  Screen 2: 开局界面（选将）                              ║
+     ╚════════════════════════════════════════════════════════╝ -->
+<div id="screen-setup" class="screen hidden">
+  <div class="setup-bg">
+    <h1 class="game-title">三国争霸</h1>
+    <p class="game-subtitle">选将布阵，20轮统一天下</p>
+
+    <div class="setup-card">
+      <!-- 步骤一: 起名 -->
+      <section class="setup-section">
+        <h2>一、赐名</h2>
+        <input id="ruler-name" type="text" placeholder="请输入您的名号" maxlength="8" />
+      </section>
+
+      <!-- 步骤二: 选将 -->
+      <section class="setup-section">
+        <h2>二、择贤任能（内政/军事/外交各选一）</h2>
+        <p class="hint-text">每位大臣都有隐藏性格，有人忠心耿耿，有人暗藏祸心……</p>
+        <div id="minister-candidates" class="minister-grid"></div>
+      </section>
+
+      <!-- 操作按钮 -->
+      <div class="setup-actions">
+        <button id="btn-start-game" class="btn-primary" disabled>开创基业</button>
+        <button id="btn-back-to-menu" class="btn-secondary">返回主菜单</button>
+      </div>
+      <p id="setup-error" class="error-text"></p>
+    </div>
+  </div>
+</div>
+
+<!-- ╔════════════════════════════════════════════════════════╗
+     ║  Screen 3: 朝堂主界面                                   ║
+     ╚════════════════════════════════════════════════════════╝ -->
+<div id="screen-court" class="screen hidden">
+  <div class="court-layout-v2">
+
+    <!-- ── 顶栏: 回合 / 称霸进度 / 快捷操作 ── -->
+    <header class="court-header">
+      <div class="header-left">
+        <span id="turn-display" class="turn-badge">第1/20轮</span>
+        <span id="date-display" class="date-text">公元208年秋</span>
+        <span id="phase-display" class="phase-badge">待机</span>
+      </div>
+      <div class="header-center">
+        <div class="conquest-bar-wrap">
+          <div class="conquest-label">称霸进度</div>
+          <div class="conquest-bar">
+            <div id="conquest-fill" class="conquest-fill" style="width:8%"></div>
+            <span id="conquest-percent" class="conquest-percent">8%</span>
+          </div>
+        </div>
+      </div>
+      <div class="header-right">
+        <button id="btn-map-header"  class="btn-icon" title="查看舆图">🗺️</button>
+        <button id="btn-save-header" class="btn-icon" title="保存">💾</button>
+        <button id="btn-menu-return" class="btn-icon" title="主菜单">🏠</button>
+      </div>
+    </header>
+
+    <!-- ── 三栏主体 ── -->
+    <div class="court-body">
+
+      <!-- 左栏: 大臣面板 + 迷你资源 -->
+      <aside class="minister-panel-v2">
+        <h3>朝臣</h3>
+        <div id="minister-list"></div>
+        <div class="resource-mini">
+          <div class="res-mini-item"><span>⚔️</span><span id="res-troops">10000</span></div>
+          <div class="res-mini-item"><span>💰</span><span id="res-gold">1000</span></div>
+          <div class="res-mini-item"><span>🌾</span><span id="res-food">5000</span></div>
+          <div class="res-mini-item"><span>⭐</span><span id="res-prestige">30</span></div>
+        </div>
+      </aside>
+
+      <!-- 中栏: 聊天区 + 输入栏 + 控制按钮 -->
+      <main class="chat-area-v2">
+        <div id="chat-messages" class="chat-messages"></div>
+
+        <!-- 群聊输入 -->
+        <div id="group-chat-bar" class="chat-input-bar hidden">
+          <input id="group-chat-input" type="text" placeholder="对所有大臣说……" />
+          <button id="btn-group-send" class="btn-send">群发</button>
+        </div>
+
+        <!-- 私聊输入 -->
+        <div id="private-chat-bar" class="chat-input-bar hidden">
+          <select id="private-minister-select" class="minister-select"></select>
+          <input id="private-chat-input" type="text" placeholder="密谈……" />
+          <button id="btn-private-send" class="btn-send">私聊</button>
+        </div>
+
+        <!-- 拟旨输入 -->
+        <div id="decree-area" class="decree-area hidden">
+          <textarea id="decree-input" placeholder="请输入旨意……（例：出兵攻打长沙，训练精兵两千）"></textarea>
+          <button id="btn-issue-decree" class="btn-primary">颁旨</button>
+        </div>
+
+        <!-- 流程控制按钮 -->
+        <div class="court-controls-v2">
+          <button id="btn-kai-chao"        class="btn-primary">鸣鞭上朝</button>
+          <button id="btn-skip-to-discuss"  class="btn-secondary hidden">进入群议</button>
+          <button id="btn-skip-to-private"  class="btn-secondary hidden">进入密谋</button>
+          <button id="btn-skip-to-decree"   class="btn-secondary hidden">进入决策</button>
+          <button id="btn-settle-impact"    class="btn-secondary hidden">查看结算</button>
+          <button id="btn-end-turn"         class="btn-danger hidden">退朝结算</button>
+        </div>
+      </main>
+
+      <!-- 右栏: 详细资源 + 缩略地图 -->
+      <aside class="info-panel-v2">
+        <div class="resource-detail">
+          <h3>资源</h3>
+          <div class="resource-grid-v2">
+            <div class="res-item-v2"><span class="res-label">兵力</span><span id="res-troops-detail" class="res-val">10000</span></div>
+            <div class="res-item-v2"><span class="res-label">钱粮</span><span id="res-gold-detail"   class="res-val">1000</span></div>
+            <div class="res-item-v2"><span class="res-label">军粮</span><span id="res-food-detail"   class="res-val">5000</span></div>
+            <div class="res-item-v2"><span class="res-label">声望</span><span id="res-prestige-detail" class="res-val">30</span></div>
+          </div>
+        </div>
+        <div class="mini-map-wrap">
+          <h3>天下大势</h3>
+          <div id="mini-map-container"></div>
+          <button id="btn-fullscreen-map" class="btn-secondary btn-sm">展开地图</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<!-- ╔════════════════════════════════════════════════════════╗
+     ║  全局弹窗层                                              ║
+     ╚════════════════════════════════════════════════════════╝ -->
+
+<!-- 弹窗: 影响结算 -->
+<div id="modal-impact" class="modal hidden">
+  <div class="modal-scroll">
+    <div class="modal-header"><h2>📊 本轮影响结算</h2></div>
+    <div id="impact-content" class="impact-content"></div>
+    <div id="undercurrent-area" class="undercurrent hidden"></div>
+    <div class="modal-footer">
+      <button id="btn-close-impact" class="btn-primary">确认</button>
+    </div>
+  </div>
+</div>
+
+<!-- 弹窗: 周报 -->
+<div id="modal-report" class="modal hidden">
+  <div class="modal-scroll">
+    <div class="modal-header"><h2>周报 · <span id="report-date"></span></h2></div>
+    <div id="report-conquest-bar" class="conquest-bar-modal">
+      <div class="conquest-label">称霸进度</div>
+      <div class="conquest-bar">
+        <div id="report-conquest-fill" class="conquest-fill" style="width:8%"></div>
+        <span id="report-conquest-percent" class="conquest-percent">8%</span>
+      </div>
+    </div>
+    <div id="report-content" class="report-content"></div>
+    <div class="modal-footer">
+      <button id="btn-close-report" class="btn-primary">明日再朝</button>
+    </div>
+  </div>
+</div>
+
+<!-- 弹窗: 天下舆图 -->
+<div id="modal-map" class="modal hidden">
+  <div class="modal-scroll modal-wide">
+    <div class="modal-header">
+      <h2>天下舆图</h2>
+      <button id="btn-close-map" class="btn-close">✕</button>
+    </div>
+    <div id="map-container"></div>
+  </div>
+</div>
+
+<!-- 弹窗: 角色详情 -->
+<div id="modal-character" class="modal hidden">
+  <div class="modal-scroll">
+    <div class="modal-header">
+      <h2 id="char-modal-title">角色详情</h2>
+      <button id="btn-close-character" class="btn-close">✕</button>
+    </div>
+    <div id="character-detail-content"></div>
+  </div>
+</div>
+
+<!-- 弹窗: 游戏结束 -->
+<div id="modal-ending" class="modal hidden">
+  <div class="modal-scroll ending-modal">
+    <div id="ending-icon" class="ending-icon"></div>
+    <h2 id="ending-title" class="ending-title"></h2>
+    <p id="ending-description" class="ending-description"></p>
+    <div class="modal-footer">
+      <button id="btn-new-game-ending" class="btn-primary">重新开始</button>
+      <button id="btn-menu-ending" class="btn-secondary">返回主菜单</button>
+    </div>
+  </div>
+</div>
+
+<!-- ╔════════════════════════════════════════════════════════╗
+     ║  全局遮罩层                                              ║
+     ╚════════════════════════════════════════════════════════╝ -->
+<div id="loading-mask" class="loading-mask hidden">
+  <div class="loading-spinner"></div>
+  <p id="loading-text">稍候……</p>
+</div>
+
+<!-- ╔════════════════════════════════════════════════════════╗
+     ║  脚本加载                                                ║
+     ╚════════════════════════════════════════════════════════╝ -->
+<script src="/static/js/app.js"></script>
+<script src="/static/js/menu.js"></script>
+<script src="/static/js/setup.js"></script>
+<script src="/static/js/court.js"></script>
+<script src="/static/js/world_map.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+/* ═══════════════════════════════════════════════════════════
+   animations.css v2.0 — 动画效果
+   ═══════════════════════════════════════════════════════════ */
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+@keyframes glow-gold {
+  0%, 100% { box-shadow: 0 0 5px rgba(201,162,39,0.3); }
+  50% { box-shadow: 0 0 15px rgba(201,162,39,0.6); }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 消息入场动画 */
+.msg-minister {
+  animation: slide-in-left 0.3s ease;
+}
+.msg-player, .msg-decree {
+  animation: slide-in-right 0.3s ease;
+}
+.msg-scene {
+  animation: glow-gold 2s ease infinite, fadeIn 0.5s ease;
+}
+
+/* 大臣面板发言中 */
+.minister-entry.speaking {
+  animation: glow-gold 1.5s ease infinite;
+}
+
+/* 称霸进度条脉动 */
+.conquest-fill {
+  animation: none;
+}
+.conquest-fill[style*="100%"] {
+  animation: glow-gold 1s ease infinite;
+}
+
+/* 阶段徽章切换 */
+.phase-badge {
+  transition: background 0.3s, color 0.3s;
+}
+
+/* 结局弹窗入场 */
+.ending-modal {
+  animation: fadeInUp 0.5s ease;
+}
+
+/* 影响结算卡片 */
+.impact-card {
+  animation: fadeInUp 0.3s ease;
+}
+.impact-card:nth-child(2) { animation-delay: 0.1s; }
+.impact-card:nth-child(3) { animation-delay: 0.2s; }
+
+/* 地图领土 hover */
+.territory-group {
+  transition: transform 0.2s ease;
+}
+.territory-group:hover {
+  transform: scale(1.05);
+}

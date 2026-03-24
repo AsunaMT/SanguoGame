@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>三国朝堂 - 调试页面</title>
+  <style>
+    body {
+      font-family: 'Microsoft YaHei', sans-serif;
+      background: linear-gradient(135deg, #2c1810 0%, #4a3728 100%);
+      color: #f4e4c1;
+      margin: 0;
+      padding: 20px;
+    }
+    .test-section {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid #8b7355;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .test-section h2 {
+      margin-top: 0;
+      color: #ffd700;
+      border-bottom: 1px solid #8b7355;
+      padding-bottom: 10px;
+    }
+    .test-result {
+      margin: 10px 0;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 4px;
+    }
+    .test-result.pass {
+      border-left: 4px solid #4caf50;
+    }
+    .test-result.fail {
+      border-left: 4px solid #f44336;
+    }
+    button {
+      background: #8b4513;
+      color: #f4e4c1;
+      border: 1px solid #ffd700;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 4px;
+      margin: 5px;
+    }
+    button:hover {
+      background: #a0522d;
+    }
+  </style>
+</head>
+<body>
+  <h1>三国朝堂 - 调试页面</h1>
+
+  <div class="test-section">
+    <h2>测试结果</h2>
+    <div id="test-results"></div>
+  </div>
+
+  <div class="test-section">
+    <h2>手动测试</h2>
+    <button onclick="testMainMenu()">测试主菜单</button>
+    <button onclick="testSetup()">测试开局界面</button>
+    <button onclick="testAPI()">测试API连接</button>
+  </div>
+
+  <script>
+    const results = [];
+
+    function addResult(testName, passed, message) {
+      const result = { testName, passed, message };
+      results.push(result);
+
+      const resultsDiv = document.getElementById('test-results');
+      const resultDiv = document.createElement('div');
+      resultDiv.className = `test-result ${passed ? 'pass' : 'fail'}`;
+      resultDiv.innerHTML = `
+        <strong>${testName}</strong>: ${passed ? '✓ 通过' : '✗ 失败'}
+        ${message ? `<br><small>${message}</small>` : ''}
+      `;
+      resultsDiv.appendChild(resultDiv);
+    }
+
+    async function testAPI() {
+      addResult('API连接测试', false, '开始测试...');
+
+      try {
+        const response = await fetch('/api/menu/status');
+        if (response.ok) {
+          const data = await response.json();
+          addResult('API连接测试', true, `状态: ${JSON.stringify(data)}`);
+        } else {
+          addResult('API连接测试', false, `HTTP ${response.status}`);
+        }
+      } catch (error) {
+        addResult('API连接测试', false, error.message);
+      }
+    }
+
+    function testMainMenu() {
+      addResult('主菜单对象测试', typeof MainMenu !== 'undefined', MainMenu ? 'MainMenu类已定义' : 'MainMenu类未定义');
+      addResult('app对象测试', typeof app !== 'undefined', app ? 'app对象已定义' : 'app对象未定义');
+      addResult('app.mainMenu测试', app && typeof app.mainMenu !== 'undefined', app?.mainMenu ? 'app.mainMenu已初始化' : 'app.mainMenu未初始化');
+    }
+
+    function testSetup() {
+      addResult('SetupScreen类测试', typeof SetupScreen !== 'undefined', SetupScreen ? 'SetupScreen类已定义' : 'SetupScreen类未定义');
+      addResult('app.setupScreen测试', app && typeof app.setupScreen !== 'undefined', app?.setupScreen ? 'app.setupScreen已初始化' : 'app.setupScreen未初始化');
+    }
+
+    // 自动运行测试
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        testMainMenu();
+        testSetup();
+        testAPI();
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

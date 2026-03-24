@@ -1,0 +1,87 @@
+﻿DEBUG: Setup routes being registered...
+python : INFO:     Will watch for changes in these directories: ['E:\\sanguo-game\\sanguo-game']
+所在位置 行:1 字符: 32
++ cd E:\sanguo-game\sanguo-game; python -u main.py 2>&1 | Out-File -Fil ...
++                                ~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (INFO:     Will ...\\sanguo-game']:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     Started reloader process [103508] using WatchFiles
+DEBUG: Setup routes being registered...
+INFO:     Started server process [123132]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+2026-03-24 14:17:58,458 - watchfiles.main - INFO - 5 changes detected
+2026-03-24 14:44:28,551 - watchfiles.main - INFO - 1 change detected
+2026-03-24 14:44:31,022 - watchfiles.main - INFO - 1 change detected
+2026-03-24 14:44:31,381 - watchfiles.main - INFO - 1 change detected
+2026-03-24 14:48:53,390 - watchfiles.main - INFO - 1 change detected
+2026-03-24 14:48:54,005 - watchfiles.main - INFO - 1 change detected
+INFO:     127.0.0.1:58727 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58727 - "GET /static/css/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59996 - "GET /static/css/animations.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58462 - "GET /static/js/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59996 - "GET /static/js/setup.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58727 - "GET /static/js/court.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58462 - "GET /static/js/world_map.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58462 - "GET /api/world/state HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:58727 - "GET /api/setup/buffs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59996 - "GET /api/setup/candidates HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59996 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:57058 - "POST /api/setup/create HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57058 - "GET /api/world/state HTTP/1.1" 200 OK
+2026-03-24 14:50:00,142 - watchfiles.main - INFO - 1 change detected
+INFO:     127.0.0.1:60135 - "GET /api/world/map HTTP/1.1" 200 OK
+2026-03-24 14:50:14,904 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 14:50:24,849 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 14:50:35,607 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60135 - "POST /api/court/start HTTP/1.1" 200 OK
+2026-03-24 14:50:35,660 - watchfiles.main - INFO - 2 changes detected
+INFO:     127.0.0.1:49692 - "POST /api/court/advance_phase HTTP/1.1" 200 OK
+2026-03-24 14:53:22,828 - watchfiles.main - INFO - 1 change detected
+INFO:     127.0.0.1:52017 - "POST /api/court/advance_phase HTTP/1.1" 200 OK
+2026-03-24 14:54:14,235 - watchfiles.main - INFO - 1 change detected
+2026-03-24 14:54:14,597 - watchfiles.main - INFO - 1 change detected
+WARNING:  WatchFiles detected changes in 'game\save_load.py'. Reloading...
+2026-03-24 14:54:43,792 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 14:54:54,466 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 14:55:03,457 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60152 - "POST /api/court/decree HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58943 - "GET /api/world/map HTTP/1.1" 200 OK
+2026-03-24 14:58:10,098 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 14:58:18,742 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:64877 - "POST /api/court/end HTTP/1.1" 200 OK
+2026-03-24 14:59:22,398 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 14:59:30,220 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+2026-03-24 14:59:38,322 - httpx - INFO - HTTP Request: POST http://v2.open.venus.oa.com/llmproxy/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56445 - "POST /api/court/start HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55396 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55396 - "GET /api/world/state HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54564 - "GET /api/setup/buffs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55396 - "GET /api/setup/candidates HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63983 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63983 - "GET /static/css/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64583 - "GET /static/css/animations.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63983 - "GET /static/js/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63983 - "GET /static/js/menu.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64583 - "GET /static/js/setup.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63983 - "GET /static/js/court.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64583 - "GET /static/js/world_map.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64583 - "GET /api/menu/settings HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:63983 - "GET /api/menu/status HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:64583 - "GET /api/setup/buffs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63983 - "GET /api/setup/candidates HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63983 - "GET /api/setup/buffs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64583 - "GET /api/setup/candidates HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60795 - "POST /api/menu/settings HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:60795 - "POST /api/menu/settings HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:60795 - "POST /api/menu/settings HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:56175 - "POST /api/menu/settings HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:56233 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60211 - "GET /api/menu/status HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:60356 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55262 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64015 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54578 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55214 - "GET /openapi.json HTTP/1.1" 200 OK
